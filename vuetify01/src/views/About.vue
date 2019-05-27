@@ -1,5 +1,12 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <NengaTop />
 </template>
+
+<script>
+  import NengaTop from '../components/NengaTop'
+  export default {
+    components: {
+      NengaTop
+    }
+  }
+</script>
