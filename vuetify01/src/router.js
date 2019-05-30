@@ -5,6 +5,7 @@ import Addresses from './views/Addresses.vue'
 import About from './views/About.vue'
 import Sub from './views/Sub.vue'
 import ToDoTool from './views/ToDoTool.vue'
+import Table from './views/Table.vue'
 
 Vue.use(Router)
 
@@ -26,6 +27,11 @@ export default new Router({
       path: '/todolist',
       name: 'todolist',
       component: ToDoTool
+    },
+    {
+      path: '/table',
+      name: 'table',
+      component: Table
     },
     {
       path: '/addresses',
