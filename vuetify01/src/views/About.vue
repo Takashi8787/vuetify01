@@ -3,7 +3,7 @@
 </template>
 
 <script>
-    console.log("tootta");
+  console.log("tootta");
   import NengaTop from '../components/NengaTop'
   export default {
     components: {
