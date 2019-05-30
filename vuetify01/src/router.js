@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Home from './views/Home.vue'
 import Addresses from './views/Addresses.vue'
 import Task from './views/Task.vue'
+import Practice from './views/p-views.vue'
 
 Vue.use(Router)
 
@@ -19,6 +20,11 @@ export default new Router({
       path: '/task',
       name: 'task',
       component: Task
+    },
+    {
+      path: '/p-views',
+      name: 'p-views',
+      component: Practice
     },
     {
       path: '/addresses',
