@@ -8,8 +8,8 @@
     >
         <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
-        <td class="text-xs-right">{{ props.item.todos }}</td>
-        <td class="text-xs-right">{{ props.item.fat }}</td>
+        <td class="text-xs-right">{{ props.item.task }}</td>
+        <td class="text-xs-right">{{ props.item.isDone }}</td>
         
         <!-- 編集ボタン -->
         <td class="justify-center layout px-0">
@@ -64,7 +64,7 @@
             value: 'id'
           },
           { text: 'ToDoS', value: 'todos' },
-          { text: 'Fat (g)', value: 'fat' },
+          { text: '状態', value: 'status' },
         ],
         todos: [
         //   {
@@ -84,18 +84,15 @@
         search(){
             console.log("sa-ti")
         },
-        addTasks(){
-            console.log(this.newItem);
-            console.log("aa");        
+        addTasks(){     
             this.idFlg++;
 
             const todo = {
                 id: this.idFlg,
-                item: this.newItem,
+                task: this.newItem,
                 isDone: false,
-            };
-            console.log("bb");        
-            this.todos.push(this.newItem);
+            };       
+            this.todos.push(todo);
         },
 
     }
