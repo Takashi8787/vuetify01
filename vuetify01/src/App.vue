@@ -22,12 +22,14 @@
 </template>
 
 <script>
+import HelloWorld from './components/HelloWorld'
 import SideNav from './components/SideNav'
 import Practice from './components/Practice'
 import { mapActions } from 'vuex'
 export default {
   name: 'App',
   components: {
+    HelloWorld,
     SideNav,
     Practice
   },
