@@ -16,7 +16,7 @@
 
     <!-- Practiceコンポーネントの表示 -->
     <v-content>
-      <Practice/>
+      <router-view/>
     </v-content>
   </v-app>
 </template>

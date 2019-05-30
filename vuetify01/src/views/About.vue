@@ -5,12 +5,11 @@
 </template>
 
 
-// <script>
-//   console.log("tootta");
-//   import NengaTop from '../components/NengaTop'
-//   export default {
-//     components: {
-//       NengaTop
-//     }
-//   }
-// </script>
+<script>
+  import NengaTop from '../components/NengaTop'
+  export default {
+    components: {
+      NengaTop
+    }
+  }
+</script>
