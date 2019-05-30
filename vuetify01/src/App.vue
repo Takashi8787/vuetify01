@@ -11,7 +11,7 @@
     <!-- <br>
     <br> -->
 
-    <v-btn color="success">aaa</v-btn>
+
     <!-- <SideNav/> -->
 
     <!-- Practiceコンポーネントの表示 -->
