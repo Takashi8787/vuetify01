@@ -38,7 +38,7 @@
     >
         <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
-        <td class="text-xs-right">{{ props.item.task }}</td>
+        <td>{{ props.item.task }}</td>
         <td class="text-xs-right">{{ props.item.isDone }}</td>
         
         <!-- 編集ボタン -->
