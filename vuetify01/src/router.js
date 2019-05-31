@@ -6,6 +6,7 @@ import About from './views/About.vue'
 import Sub from './views/Sub.vue'
 import ToDoTool from './views/ToDoTool.vue'
 import Table from './views/Table.vue'
+import Layout from './views/Layout.vue'
 
 Vue.use(Router)
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/sub',
       name: 'sub',
       component: Sub
+    },
+    {
+      path: '/layout',
+      name: 'layout',
+      component: Layout
     },
     {
       path: '/todolist',

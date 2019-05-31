@@ -1,5 +1,10 @@
 <template>
-  <Practice />
+  <div>
+    <p>
+      <router-link to="/">HOME</router-link>
+    </p>
+    <Practice />
+  </div>
 </template>
 
 <script>
