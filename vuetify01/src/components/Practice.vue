@@ -2,6 +2,16 @@
   <v-app>
     <v-content wrap style="width: 500px;">
 
+        <h1>Storeの練習</h1>
+        <p>ここにデータ</p>
+        <p>{{ $store.state.count }}<p>
+        <v-btn color="blue" @click="addStoreTodos">Store Method</v-btn>
+
+        
+        <br>
+        <br>
+
+
         <h1>ToDoList(Practice)</h1>
         <form class="listSelect" >
             <input type="radio" id="all-list" name="listSelect" value="all-list-v" v-model="status"><label for="all-list">すべて</label>
@@ -16,6 +26,7 @@
             <v-text-field label="Solo" solo v-model="newItem"></v-text-field>
             <v-btn color="success" v-on:click="addTasks">追加</v-btn>
         </form>
+        <v-btn @click="addStoreTodos('rensuDta')">addStoreTodos!</v-btn>
 
         <!-- 追加タスクの表示テーブル -->
         <table v-cloak>
@@ -72,6 +83,16 @@
 </template>
 
 <script>
+// ストアのデータを扱うインポート
+// import store from '@/store.js'
+import { mapActions } from 'vuex'
+
+  // console.log($store.state.count)
+  // console.log("storeのカウントの値をw表示")
+  // $store.commit('increment')
+  // console.log($store.state.count)
+  // console.log("storeのカウントの値を足しました")
+
   export default {
     data: () => ({
         message: "NANA",  
@@ -183,6 +204,15 @@
     // },  
 
     methods: {
+
+        // ストアの練習用メソッド
+        storeMethod(){
+          console.log("ストアメソッド実行");
+          this.$store.dispatch('addStoreTodos')
+        },
+        // Mapactionからのストアメソッド実行
+        ...mapActions(['addStoreTodos']),
+
         // 【処理】新規タスクを todos[] に追加するメソッド
         addTasks: function(){
         if(this.newItem != ''){
@@ -204,21 +234,22 @@
         },
         // 【処理】削除ボタン押下の処理
         deleteItem: function(id){
-        if(confirm(' Are you sure? ID:' + id)){
-            // 削除対象IDを持つデータのみfilterで除く
-            this.todos = this.todos.filter( todo => todo.id != id );
+          if(confirm(' Are you sure? ID:' + id)){
+              // 削除対象IDを持つデータのみfilterで除く
+              this.todos = this.todos.filter( todo => todo.id != id );
         };
         },
         // 【処理】状態ボタン（作業中・完了）クリック時の処理
         changeStatus: function(id){
-        for(let i=0; i<this.todos.length; i++ ){
-            // idが一致したものだけ、処理する
-            if( this.todos[i].id === id ){
-            // isDoneの反転と表示文字の変更
-            this.todos[i].isDone = !this.todos[i].isDone;
-            }
-        };
+          for(let i=0; i<this.todos.length; i++ ){
+              // idが一致したものだけ、処理する
+              if( this.todos[i].id === id ){
+              // isDoneの反転と表示文字の変更
+              this.todos[i].isDone = !this.todos[i].isDone;
+              }
+          };
         },
+        ...mapActions(['addStoreTodos']),
     },
 
     // 算出プロパティ

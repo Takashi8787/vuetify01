@@ -8,7 +8,7 @@
       <router-link to="/table">Table</router-link>
     </p>
     <p>
-      <router-link to="/sub">Sub</router-link>
+      <router-link to="/sub">Sub(Practice)</router-link>
     </p>
     <p>
       <router-link to="/todolist">ToDoList</router-link>
