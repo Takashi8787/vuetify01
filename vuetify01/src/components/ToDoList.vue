@@ -3,26 +3,9 @@
     <!-- <v-layout width="500px"> -->
     <v-flex>
 
-    <h1>ToDoList</h1>
+    <h1>ストアデータのTBL表示（SUB）</h1>
     <router-link to="/">HOME</router-link>
     <hr>
-    <h2>new ToDoList</h2>
-    <!-- 新規テキストフィールド -->
-    <!-- <v-layout> -->
-      <v-flex xs9 sm12 md12>
-        <v-text-field
-          label="new tasks"
-          outline
-          v-model="newItem"
-        ></v-text-field>
-      </v-flex>
-      <v-flex xs3 sm6 md6>
-        <v-btn color="pink" @click="addTasks()">Add</v-btn>
-      </v-flex>
-    <!-- </v-layout> -->
-
-    <hr>
-
 
 
     <v-radio-group v-model="status" row>
@@ -31,6 +14,8 @@
       <v-radio label="Done" value="done-list-v"></v-radio>
     </v-radio-group>
 
+
+
     <v-data-table
         :headers="headers"
         :items="todosDisplay"
@@ -38,14 +23,13 @@
     >
         <template v-slot:items="props">
         <td>{{ props.item.id }}</td>
-        <td>{{ props.item.task }}</td>
-        <td class="text-xs-right">{{ props.item.isDone }}</td>
+        <td>{{ props.item.title }}</td>
+        <td>{{ props.item.importance }}</td>
+        <td>{{ props.item.detail }}</td>
+        <td><v-checkbox v-model="props.item.isDone"></v-checkbox></td>
         
         <!-- 編集ボタン -->
         <td class="justify-center layout px-0">
-            <!-- 状態変更ボタン -->
-            <!-- <v-btn color="green" v-bind:value="props.item.isDone ? ' 完了 ':'作業中'" @click="changeStatus(props.item.id)">作業中</v-btn> -->
-            <input type="button" v-bind:value="props.item.isDone ? ' 完了 ':'作業中'" @click="changeStatus(props.item.id)">
             <!-- 編集ボタン -->
             <v-icon class="mr-2" @click="editUser(props.item.id)">
                 edit
@@ -67,6 +51,7 @@
     <br>
     <p>自分確認用のデータ</p>
     <p>{{ $data }}</p>
+    <p>{{ $store.state.taskInfos }}</p>
     <!-- </v-layout> -->
     </v-flex>
   </v-container>
@@ -87,14 +72,17 @@
         idFlg: 0,
         status: 'all-list-v',
         headers: [
-          {
-            text: 'ID',
-            align: 'left',
-            // sortable: false,
-            value: 'id'
-          },
-          { text: 'ToDoS', value: 'todos' },
-          { text: '状態', value: 'status' },
+          // {
+          //   text: 'ID',
+          //   align: 'left',
+          //   // sortable: false,
+          //   value: 'id'
+          // },
+          { text: 'ID', value: 'id' },
+          { text: 'タスク名', value: 'title' },
+          { text: '重要度', value: 'importance' },
+          { text: '詳細', value: 'detail' },
+          { text: '状態', value: 'isDone' },
         ],
         todos: [],
       }
@@ -116,15 +104,15 @@
         deleteItem(id){
           if(confirm(' Are you sure? ID:' + id)){
             // 削除対象IDを持つデータのみfilterで除く
-            this.todos = this.todos.filter( todo => todo.id != id );
+            this.$store.state.taskInfos = this.$store.state.taskInfos.filter( taskinfo => taskinfo.id != id );
           };
         },
         changeStatus(id){
-          for(let i=0; i<this.todos.length; i++ ){
+          for(let i=0; i<this.$store.state.taskInfos.length; i++ ){
           // idが一致したものだけ、処理する
-            if( this.todos[i].id === id ){
+            if( this.$store.state.taskInfos[i].id === id ){
             // isDoneの反転と表示文字の変更
-              this.todos[i].isDone = !this.todos[i].isDone;
+              this.$store.state.taskInfos[i].isDone = !this.$store.state.taskInfos[i].isDone;
             }
           };
         },
@@ -134,11 +122,11 @@
       todosDisplay() {
         // ラジオボタンの状態によって、表示するtodos配列を返す
         if( this.status === 'all-list-v'){
-          return this.todos;
+          return this.$store.state.taskInfos;
         } else if ( this.status === 'doing-list-v') {
-          return this.todos.filter( todo => !todo.isDone);
+          return this.$store.state.taskInfos.filter( taskinfo => !taskinfo.isDone);
         } else if ( this.status === 'done-list-v'){
-          return this.todos.filter( todo => todo.isDone);
+          return this.$store.state.taskInfos.filter( taskinfo => taskinfo.isDone);
         } else {console.log("エラーが発生しました");
         };
       },

@@ -4,7 +4,7 @@
 
         <h1>Storeの練習</h1>
         <p>ここにデータ</p>
-        <p>{{ $store.state.count }}<p>
+        <p>{{ $store.state.taskInfos }}<p>
         <v-btn color="blue" @click="addStoreTodos">Store Method</v-btn>
 
         

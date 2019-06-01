@@ -7,6 +7,8 @@ import Sub from './views/Sub.vue'
 import ToDoTool from './views/ToDoTool.vue'
 import Table from './views/Table.vue'
 import Layout from './views/Layout.vue'
+import ToDoSub from './views/ToDoSub.vue'
+
 
 Vue.use(Router)
 
@@ -23,6 +25,11 @@ export default new Router({
       path: '/sub',
       name: 'sub',
       component: Sub
+    },
+    {
+      path: '/todosub',
+      name: 'todosub',
+      component: ToDoSub
     },
     {
       path: '/layout',
