@@ -1,15 +1,18 @@
 <template>
   <div class="about">
-    <h1>This is an about pageですよ！</h1>
+    <h1>About views page(SideNav)ですよ！</h1>
+    <br>
+    <SideNav />
   </div>
+  
 </template>
 
 
 <script>
-  import NengaTop from '../components/NengaTop'
+  import SideNav from '../components/SideNav'
   export default {
     components: {
-      NengaTop
+      SideNav
     }
   }
 </script>

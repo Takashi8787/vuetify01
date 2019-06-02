@@ -1,21 +1,22 @@
 <template>
   <v-app>
-    <!-- <v-toolbar app>
+    <v-toolbar dark color="primary">
       <v-toolbar-side-icon @click.stop="toggleSideMenu"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
-        <span>マイアドレス帳</span>
+        <span>タスク管理アプリケーション</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
-    </v-toolbar> -->
+    </v-toolbar>
 
     <!-- <br>
     <br> -->
 
-
-    <!-- <SideNav/> -->
+    <SideNav/>
+    
 
     <!-- Practiceコンポーネントの表示 -->
     <v-content>
+
       <router-view/>
     </v-content>
   </v-app>
