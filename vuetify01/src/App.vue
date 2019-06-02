@@ -1,4 +1,5 @@
 <template>
+  <!-- vuetifyでは全ての要素を[v-app]で囲む -->
   <v-app>
     <v-toolbar dark color="primary">
       <v-toolbar-side-icon @click.stop="toggleSideMenu"></v-toolbar-side-icon>
@@ -7,16 +8,11 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>
-
-    <!-- <br>
-    <br> -->
-
+    <!-- サイドナビゲーション -->
     <SideNav/>
-    
 
     <!-- Practiceコンポーネントの表示 -->
     <v-content>
-
       <router-view/>
     </v-content>
   </v-app>

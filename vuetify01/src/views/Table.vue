@@ -22,24 +22,31 @@
         class="elevation-1"
     >
         <template v-slot:items="props">
-        <td>{{ props.item.id }}</td>
-        <td>{{ props.item.title }}</td>
-        <td>{{ props.item.importance }}</td>
-        <td>{{ props.item.detail }}</td>
-        <td><v-checkbox v-model="props.item.isDone"></v-checkbox></td>
-        
-        <!-- 編集ボタン -->
-        <td class="justify-center layout px-0">
-            <!-- 編集ボタン -->
-            <v-icon class="mr-2" @click="editUser(props.item.id)">
-                edit
-            </v-icon>
-            <!-- 削除ボタン -->
-            <v-icon @click="deleteItem(props.item.id)">
-                delete
-            </v-icon>
-        </td>
+          <td>{{ props.item.id }}</td>
+          <td>{{ props.item.title }}</td>
+          <td>{{ props.item.importance }}</td>
+          <td>{{ props.item.detail }}</td>
+          <td><v-checkbox v-model="props.item.isDone"></v-checkbox></td>
+          
+          <!-- 編集ボタン -->
+          <td class="justify-center layout px-0">
+              <!-- 編集ボタン -->
+              <v-icon class="mr-2" @click="editUser(props.item.id)">
+                  edit
+              </v-icon>
+              <!-- 削除ボタン -->
+              <v-icon @click="deleteItem(props.item.id)">
+                  delete
+              </v-icon>
+          </td>
         </template>
+        <!-- データが無かったときの表示 -->
+        <template v-slot:no-data>
+          <v-alert :value="true" color="error" icon="warning">
+            Sorry, nothing to display here :(
+          </v-alert>
+        </template>
+
     </v-data-table>
 
     <!-- <v-text-field append-icon="search"

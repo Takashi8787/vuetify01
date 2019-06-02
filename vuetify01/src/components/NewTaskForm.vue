@@ -15,14 +15,14 @@
         <v-card>
           <v-card-text>
             <v-form>
-               <v-text-field v-model="taskInfo.title" label="タスク名"></v-text-field>
-               <v-text-field v-model="taskInfo.importance" label="重要度"></v-text-field>
-               <v-text-field v-model="taskInfo.detail" label="詳細"></v-text-field>
-               <!-- <v-text-field v-model="taskInfo.isDone" label="状態"></v-text-field> -->
-               <!-- <v-btn @click="$router.push({ name: 'taskInfoes' })">キャンセル</v-btn> -->
-               <!-- <v-btn color="info" @click="">保存</v-btn> -->
-               <v-btn @click="$router.push({ name: '/' })">キャンセル</v-btn>
-               <v-btn color="info" @click="submit">保存</v-btn>
+              <v-text-field v-model="taskInfo.title" label="タスク名"></v-text-field>
+              <v-text-field v-model="taskInfo.importance" label="重要度"></v-text-field>
+              <v-text-field v-model="taskInfo.detail" label="詳細"></v-text-field>
+              <!-- <v-text-field v-model="taskInfo.isDone" label="状態"></v-text-field> -->
+              <!-- <v-btn @click="$router.push({ name: 'taskInfoes' })">キャンセル</v-btn> -->
+              <!-- <v-btn color="info" @click="">保存</v-btn> -->
+              <v-btn @click="$router.push({ name: '/' })">キャンセル</v-btn>
+              <v-btn color="info" @click="submit">保存</v-btn>
             </v-form>
           </v-card-text>
         </v-card>
@@ -35,7 +35,7 @@
     <p>{{ $data }}</p>
     <p>ストアのデータ</p>
     <p>{{ $store.state.addTasks }}</p>
- 
+
   </v-container>
 </template>
 
