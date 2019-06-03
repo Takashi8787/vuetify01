@@ -1,36 +1,67 @@
 <template>
 <v-container>
-    <p>
-        <router-link to="/">HOME</router-link>
-    </p>
 
-    <div class="containerdesu">aaa
+    <div class="containerdesu">
+        aaa
         <div>sdafsadf</div>
         <div>sdafsadf</div>
         <div>sdafsadf</div>
     </div>
-    <v-layout>
-        <div>asdfsfad</div>
-        <div>asdfsfad</div>
-        <div>asdfsfad</div>
+
+    <br>
+    <hr>
+    <div>ブイコンテイナ01</div>
+    <div>ブイコンテイナ02</div>
+    <v-layout align-center>
+        <div>ブイレイアウト01</div>
+        <div>ブイレイアウト02</div>
+        <v-flex>
+            <div>ブイフレックスxs01</div>
+            <div>ブイフレックスxs02</div>
+        </v-flex>
+        <v-flex>
+            <div>ブイフレックス01</div>
+            <div>ブイフレックス02</div>
+        </v-flex>
     </v-layout>
-    <div>sadfdsaf</div>
-    <div>sadfdsaf</div>
-    <div>sadfdsaf</div>
 
-    <br>
-    <br>
-    <br>
+</v-container>
 
-    <v-flex xs12>
-        <v-btn color="blue">aaaaaaaaaaaaaaaaa</v-btn>
-    </v-flex>
-    <v-flex>
+</template>
 
-    </v-flex>
+<script>
+</script>
 
-  
-  <v-card class="pa-4">
+<style>
+.containerdesu{
+  width:400px;
+  height:300px;
+  padding:10px;
+  background-color:#f3d68a;
+  display:flex;
+  /* flex-direction: column; */
+}
+.containerdesu div{
+  background-color:#fff;
+  margin:10px;
+  width:80px;
+  height:20px;
+}
+
+/* v-layout{
+    background-color:skyblue; 
+} */
+
+</style>
+
+
+
+
+
+
+
+    <!-- 登録フォームスタート -->
+  <!-- <v-card class="pa-4">
   <v-card-title class="font-weight-bold">新規会員登録フォーム(3分で完了)</v-card-title>
   <v-card-text>WINDIIキャリアに登録すると、スキルシートを簡単にPDFに出力したり、企業からのオファーが届くようになります！</v-card-text>
   <v-card-title>稼働する条件や、空き状況</v-card-title>
@@ -86,10 +117,11 @@
           value=""
           placeholder="独学で勉強をしてきたので、詰まっても自己解決するのが得意です. "
         ></v-textarea>
-  </v-card>
+  </v-card> -->
+  <!-- 登録フォームエンド -->
 
 <!-- 画像イメージの表示 -->
-<v-layout>
+<!-- <v-layout>
     <v-flex xs12>
         <v-card>
             <v-img
@@ -128,36 +160,6 @@
             </v-card-actions>
         </v-card>
     </v-flex>
-</v-layout>
+</v-layout> -->
 
 
-
-
-</v-container>
-</template>
-
-<script>
-//   import Practice from '../components/Practice'
-//   export default {
-//     components: {
-//       Practice
-//     }
-//   }
-</script>
-
-<style>
-.containerdesu{
-  width:400px;
-  height:100px;
-  padding:10px;
-  background-color:#f3d68a;
-  display:flex;
-}
-.containerdesu div{
-  background-color:#fff;
-  margin:10px;
-  width:80px;
-  height:80px;
-}
-
-</style>

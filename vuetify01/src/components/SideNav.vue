@@ -45,6 +45,7 @@ export default {
         { title: 'Table', icon: 'question_answer', link: { name: 'table'} },
         { title: 'Sub', icon: 'question_answer', link: { name: 'sub'} },
         { title: 'アカウント登録', icon: 'add_box', link: { name: 'accountcreation'} },
+        { title: 'レイアウト', icon: 'add_box', link: { name: 'layout'} },
       ],
 
     }
