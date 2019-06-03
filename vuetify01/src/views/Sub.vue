@@ -1,8 +1,7 @@
 <template>
   <div>
-    <p>
-      <router-link to="/">HOME</router-link>
-    </p>
+    <p>Practiceコンポーネントにボード機能作成</p>
+    <hr>
     <Practice />
   </div>
 </template>

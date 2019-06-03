@@ -4,7 +4,7 @@
     <v-toolbar dark color="primary">
       <v-toolbar-side-icon @click.stop="toggleSideMenu"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
-        <span>タスク管理アプリケーション</span>
+        <span>ボードリスト機能作成01</span>
       </v-toolbar-title>
       <v-spacer></v-spacer>
     </v-toolbar>

@@ -12,15 +12,27 @@ export default new Vuex.Store({
     count:12,
   },
   mutations: {
-    addTaskInfos(state, taskinfo ){
+    addBoardInfos(state, boardInfo ){
+      console.log("boardInfoのデータ");
+      console.log(boardInfo);
+
       // id,isDoneプロパティを追加
-      taskinfo.id = state.idNum;
-      taskinfo.isDone = false;
+      boardInfo.id = state.idNum;
+      boardInfo.isDone = false;
       // store stateのtaskInfosにデータをプッシュ
       state.taskInfos.push(taskinfo)
       // idの数値をインクリメント
       state.idNum++;
     },
+    // addTaskInfos(state, taskinfo ){
+    //   // id,isDoneプロパティを追加
+    //   taskinfo.id = state.idNum;
+    //   taskinfo.isDone = false;
+    //   // store stateのtaskInfosにデータをプッシュ
+    //   state.taskInfos.push(taskinfo)
+    //   // idの数値をインクリメント
+    //   state.idNum++;
+    // },
     toggleSideMenu (state) {
       state.drawer = !state.drawer
     },
@@ -40,8 +52,11 @@ export default new Vuex.Store({
     addStoreTodos({ commit }) {
       commit('addStoreTodos')
     },
-    addTaskInfos({ commit } , taskinfo ) {
-      commit('addTaskInfos' , taskinfo )
+    addBoardInfos({ commit } , boardInfo ) {
+      commit('addBoardInfos' , boardInfo )
     },
+    // addTaskInfos({ commit } , taskinfo ) {
+    //   commit('addTaskInfos' , taskinfo )
+    // },
   }
 })
