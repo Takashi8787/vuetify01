@@ -48,6 +48,7 @@
     <p>{{ $data }}</p>
     <p>ストアのデータ</p>
     <p>{{ $store.state.addTasks }}</p>
+    <p>{{ $store.state.addTasks }}</p>
 
   </v-container>
 </template>

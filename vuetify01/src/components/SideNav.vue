@@ -43,7 +43,7 @@ export default {
         { title: 'ToDo list', icon: 'list', link: { name: 'todolist'} },
         { title: '新規登録', icon: 'add_box', link: { name: 'todosub'} },
         { title: 'Table', icon: 'question_answer', link: { name: 'table'} },
-        { title: 'Sub', icon: 'question_answer', link: { name: 'sub'} },
+        { title: 'ボードリスト', icon: 'question_answer', link: { name: 'sub'} },
         { title: 'アカウント登録', icon: 'add_box', link: { name: 'accountcreation'} },
         { title: 'レイアウト', icon: 'add_box', link: { name: 'layout'} },
       ],

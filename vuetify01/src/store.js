@@ -6,6 +6,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     taskInfos: [],
+    boardInfos: [],
     idNum: 0,
     drawer: false,
     storeTodos: ['aaa','bbbb'],
@@ -15,12 +16,14 @@ export default new Vuex.Store({
     addBoardInfos(state, boardInfo ){
       console.log("boardInfoのデータ");
       console.log(boardInfo);
+      console.log("stateのデータ");
+      console.log(state);
 
       // id,isDoneプロパティを追加
       boardInfo.id = state.idNum;
       boardInfo.isDone = false;
       // store stateのtaskInfosにデータをプッシュ
-      state.taskInfos.push(taskinfo)
+      state.boardInfos.push(boardInfo)
       // idの数値をインクリメント
       state.idNum++;
     },

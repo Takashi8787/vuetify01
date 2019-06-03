@@ -3,7 +3,7 @@
     <v-layout width="500px">
       <v-flex>
 
-        <h1>ストアデータのTBL表示（SUB!）</h1>
+        <h1>ストアデータのTBL表示（SUB）</h1>
         <router-link to="/">HOME</router-link>
         <hr>
 
