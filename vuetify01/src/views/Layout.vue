@@ -1,38 +1,50 @@
 <template>
-<v-container>
+<v-container style="background-color:gray;">
 
-    <div class="containerdesu">
+    <!-- <div class="containerdesu">
         aaa
         <div>sdafsadf</div>
         <div>sdafsadf</div>
         <div>sdafsadf</div>
-    </div>
+    </div> -->
 
     <br>
     <hr>
-    <div>ブイコンテイナ01</div>
-    <div>ブイコンテイナ02</div>
-    <v-layout align-center>
-        <div>ブイレイアウト01</div>
-        <div>ブイレイアウト02</div>
-        <v-flex>
-            <div>ブイフレックスxs01</div>
-            <div>ブイフレックスxs02</div>
+    <div style="background-color:blue;">ブイコンテイナ01</div>
+    <v-layout align-center style="background-color:skyblue;">
+        <v-flex mx-4  style="background-color:orange;">
+            <div class="white--text" >ブイレイアウト01</div>
+            <div>ブイレイアウト02</div>
         </v-flex>
-        <v-flex>
-            <div>ブイフレックス01</div>
+        <v-flex mx-4 class="green">
+            <div>ブイフレックスxs01</div>
+            <div>ブイフレックスxs0a</div>
+        </v-flex>
+        <v-flex class="red darken-4 white--text">
+            <div class=".display-4">ブイフレックス01</div>
             <div>ブイフレックス02</div>
         </v-flex>
     </v-layout>
+
+    <blockquote class="blockquote purple lighten-4">
+        <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+        <p>sadfkjas;doiajsifddsafjdsaifeiafijafij</p>
+    </blockquote>
+
+
 
 </v-container>
 
 </template>
 
-<script>
-</script>
 
 <style>
+
+.v-layout{
+    background-color: black;
+}
+
+
 .containerdesu{
   width:400px;
   height:300px;
@@ -51,8 +63,14 @@
 /* v-layout{
     background-color:skyblue; 
 } */
-
 </style>
+
+
+
+<script>
+</script>
+
+
 
 
 
