@@ -2,18 +2,57 @@
   <v-container>
       <v-layout wrap>
         <v-flex >
-          <h1>ボードリスト</h1>
-          <p>ここにボードリストName</p>
-          <p>{{  }}</p>
+          <h1>ボードリスト名：{{ $store.state.boardInfos[0].boardTitle }}</h1>
           <br>
           <hr>
         </v-flex>
 
       </v-layout>
 
+      <v-layout justify-center>
+          <v-flex>
+            <v-card>
+              <div class="listCard">
+                <v-card-title primary-title>
+                  <h3 class="headline">{{ $store.state.boardInfos[0].listTitle }}</h3>
+                </v-card-title>
+                <v-card-text class="listItem">
+                    <p> {{ $store.state.boardInfos[0].listItem }} <v-icon right>edit</v-icon></p>
+                    <p> {{ $store.state.boardInfos[0].listItem }} <v-icon right>edit</v-icon></p>
+                    <p> {{ $store.state.boardInfos[0].listItem }} <v-icon right>edit</v-icon></p>
+                </v-card-text>
+
+                <v-card-actions> 
+                  <v-btn v-if="toggle" flat color="black" @click="$data.toggle = !$data.toggle"><v-icon>add</v-icon>更にカードを追加</v-btn>
+                  <!-- <v-btn flat color="orange">Explore</v-btn> -->
+                  <v-form v-else>
+                    <v-textarea
+                    v-model="listTitle"
+                    outline
+                    name="input-7-4"
+                    label="このカードにタイトルを入力..."
+                    value="bbbbbbb"
+                    ></v-textarea>
+                    <v-btn color="green" @click="submit( $store.state.boardInfos[0].id )">カードを追加</v-btn>
+                    <v-icon large @click="$data.toggle = !$data.toggle">close</v-icon>
+                  </v-form>
+                </v-card-actions>
+              </div>
+            </v-card>
+          </v-flex>
+          <v-flex>
+            <h3>リストのタイトル</h3>
+            <p>リストカード０１</p>
+            <p>リストカード０２</p>
+            <p>リストカード０３</p>
+          </v-flex>
+          <hr>
+      </v-layout>
+
+      <!-- 確認用データ -->
+      <br><br><br><hr>
       <v-layout>      
         <v-flex>
-          <!-- 確認用データ -->
           <p>確認用「Vueインスタンス：data」の中身</p>
           <p>{{ $data }}</p>
           <p>{{ $store.state.boardInfos }}</p>
@@ -21,6 +60,7 @@
       </v-layout>   
   </v-container>
 </template>
+
 
 <script>
 // ストアのデータを扱うインポート
@@ -35,11 +75,12 @@ import { mapActions } from 'vuex'
 
   export default {
     data: () => ({
-        message: "NANA",  
-        idFlg: 0,  // ID番号設定Flg,１つずつ数値上げていく
-        newItem: '',  // テキストボックスに入力されたタスク名
-        status: 'all-list-v',  // ラジオボタンの
-        todos: [],  // Todoタスク格納 オブジェクト配列
+      toggle: true,
+      listTitle: "",
+      idFlg: 0,  // ID番号設定Flg,１つずつ数値上げていく
+      newItem: '',  // テキストボックスに入力されたタスク名
+      status: 'all-list-v',  // ラジオボタンの
+      todos: [],  // Todoタスク格納 オブジェクト配列
     }),
     // mounted: function() {
     //     console.log("mountedのコンソール");
@@ -47,7 +88,22 @@ import { mapActions } from 'vuex'
 
     methods: {
 
+      addListItem(id){
+        console.log("add list");
+      },
+      submit(id){
+        console.log(id);
+        confirm("okok?" + id);
+          this.addListItem( id, this.listTitle)
+          this.boardInfo = {}
+      },
+      ...mapActions(['addListItem']),
+
+
         // ストアの練習用メソッド
+
+
+
         storeMethod(){
           console.log("ストアメソッド実行");
           this.$store.dispatch('addStoreTodos')
@@ -120,36 +176,22 @@ import { mapActions } from 'vuex'
   }
 </script>
 
-
+<!-- スタイルシート -->
 <style>
-/* 正しく表示されるまでディスプレイ非表示 */
-[v-cloak] {
-  display: none;
+.listCard {
+  background-color:#dfe1e6;
+  margin:10px;
 }
-
-#app ul {
-  list-style:none;
+.listItem{
+  padding: 0px 5px;
 }
-
-#app tr > td.done {
-  text-decoration: line-through;
-  color: #bbb;
+.listItem > p{
+  background-color:white;
+  padding: 5px 5px;
+  margin-bottom: 10px;
 }
-
-.listSelect {
-  margin: 10px 0;
-}
-
-.deleteCommand {
-  font-size: 12px;
-  cursor: pointer;
-  color: blue;
-}
-
-.info {
-  color: #bbb;
-  font-size: 12px;
-  font-weight: normal;
+.listItem > p:hover {
+  background-color: #c9c9c9;
 }
 </style>
 

@@ -59,7 +59,7 @@
         <br>
         <p>自分確認用のデータ</p>
         <p>{{ $data }}</p>
-        <p>{{ $store.state.taskInfos }}</p>
+        <p>{{ $store.state.boardInfos }}</p>
       </v-flex>
     </v-layout>
   </v-container>

@@ -18,14 +18,10 @@ export default new Vuex.Store({
       console.log(boardInfo);
       console.log("stateのデータ");
       console.log(state);
-
+      
       // id,isDoneプロパティを追加
-      boardInfo.id = state.idNum;
-      boardInfo.isDone = false;
       // store stateのtaskInfosにデータをプッシュ
       state.boardInfos.push(boardInfo)
-      // idの数値をインクリメント
-      state.idNum++;
     },
     // addTaskInfos(state, taskinfo ){
     //   // id,isDoneプロパティを追加
