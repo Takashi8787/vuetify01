@@ -31,8 +31,8 @@
           <v-card-text>ボードリストの新規追加
             <v-form>
               <v-text-field v-model="boardInfo.boardTitle" label="ボード名"></v-text-field>
-              <v-text-field v-model="boardInfo.listTitle" label="リスト名"></v-text-field>
-              <v-text-field v-model="boardInfo.listItem" label="カードリスト名"></v-text-field>
+              <!-- <v-text-field v-model="boardInfo.listTitle" label="リスト名"></v-text-field>
+              <v-text-field v-model="boardInfo.listItem" label="カードリスト名"></v-text-field> -->
               <!-- <v-text-field v-model="boardInfo.isDone" label="状態"></v-text-field> -->
               <v-btn @click="$router.push({ name: '/' })">キャンセル</v-btn>
               <v-btn color="info" @click="submit">保存</v-btn>

@@ -88,14 +88,13 @@ import { mapActions } from 'vuex'
 
     methods: {
 
-      addListItem(id){
-        console.log("add list");
-      },
+      // addListItem(id){
+      //   console.log("add list");
+      // },
       submit(id){
-        console.log(id);
-        confirm("okok?" + id);
-          this.addListItem( id, this.listTitle)
-          this.boardInfo = {}
+        console.log("submitが実行されました.id:" + id);
+        this.addListItem( id, this.listTitle)
+        this.boardInfo = {}
       },
       ...mapActions(['addListItem']),
 

@@ -20,18 +20,24 @@ export default new Vuex.Store({
       console.log(state);
       
       // id,isDoneプロパティを追加
-      // store stateのtaskInfosにデータをプッシュ
+      boardInfo.id = state.idNum;
+      boardInfo.isDone = false;
+      // store stateのboardInfosにデータをプッシュ
       state.boardInfos.push(boardInfo)
+      // idの数値をインクリメント
+      state.idNum++;
     },
-    // addTaskInfos(state, taskinfo ){
-    //   // id,isDoneプロパティを追加
-    //   taskinfo.id = state.idNum;
-    //   taskinfo.isDone = false;
-    //   // store stateのtaskInfosにデータをプッシュ
-    //   state.taskInfos.push(taskinfo)
-    //   // idの数値をインクリメント
-    //   state.idNum++;
-    // },
+    addListItem(state, id, listTitle ){
+      // id,isDoneプロパティを追加
+      console.log("id引数２のデータ");
+      console.log(id);
+      console.log("boardinfo.listTitleのデータ");
+      console.log(state.boardInfos[id].listTitle);
+      // store stateのtaskInfosにデータをプッシュ
+      state.boardInfos.listTitle.push(listTitle)
+      // idの数値をインクリメント
+      state.idNum++;
+    },
     toggleSideMenu (state) {
       state.drawer = !state.drawer
     },
@@ -54,8 +60,8 @@ export default new Vuex.Store({
     addBoardInfos({ commit } , boardInfo ) {
       commit('addBoardInfos' , boardInfo )
     },
-    // addTaskInfos({ commit } , taskinfo ) {
-    //   commit('addTaskInfos' , taskinfo )
-    // },
+    addListItem({ commit } , id, listTitle ) {
+      commit('addListItem' , id, listTitle )
+    },
   }
 })
