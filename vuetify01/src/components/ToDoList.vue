@@ -1,6 +1,6 @@
 <template>
-  <v-container>
-    <v-layout width="500px">
+  <v-container style="max-width: 900px">
+    <v-layout>
       <v-flex>
 
         <h1>ストアデータのTBL表示（SUB）</h1>

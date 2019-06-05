@@ -1,12 +1,71 @@
 <template>
-<v-container style="background-color:gray;">
+<v-container style="background-color:gray;　max-width: 500px;">
 
-    <!-- <div class="containerdesu">
-        aaa
-        <div>sdafsadf</div>
-        <div>sdafsadf</div>
-        <div>sdafsadf</div>
-    </div> -->
+
+
+    <v-text-field
+    v-model="task"
+    label="What are you working on?"
+    solo
+    @keydown.enter="create"
+    >
+    <v-fade-transition v-slot:append>
+        <v-icon
+        v-if="task"
+        @click="create"
+        >
+        add_circle
+        </v-icon>
+    </v-fade-transition>
+    </v-text-field>
+    <v-text-field
+    v-model="message"
+    >
+
+    </v-text-field>
+
+    <h2 class="display-1 success--text pl-3">
+    Tasks:&nbsp;
+    <v-fade-transition leave-absolute>
+        <span>{{ message }}</span>
+        <!-- <span :key="`tasks-${tasks.length}`">
+        {{ tasks.length }}
+        </span> -->
+    </v-fade-transition>
+    </h2>
+
+    <v-divider class="mt-3"></v-divider>
+
+    <v-layout
+      my-1
+      align-center
+    >
+      <strong class="mx-3 info--text text--darken-3">
+        Remaining: {{ message }}
+      </strong>
+
+      <v-divider vertical></v-divider>
+
+      <strong class="mx-3 black--text">
+        Completed: {{ message }}
+      </strong>
+
+      <v-spacer></v-spacer>
+
+        <!-- :value="progress" -->
+      <v-progress-circular
+        class="mr-2"
+      ></v-progress-circular>
+    </v-layout>
+
+
+    <p>確認用データ</p>
+    <p>{{ $data }}</p>
+
+
+
+<!-- ここまで -->
+
 
     <br>
     <hr>
@@ -30,8 +89,6 @@
         <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
         <p>sadfkjas;doiajsifddsafjdsaifeiafijafij</p>
     </blockquote>
-
-
 
 </v-container>
 
@@ -68,6 +125,14 @@
 
 
 <script>
+
+  export default {
+    data () {
+      return {
+        message: "",
+      }
+    },
+  }
 </script>
 
 

@@ -1,9 +1,23 @@
 <template>
   <v-container>
     <h1>ここに静的データの練習</h1>
+    <h2>ボードタイトルリスト</h2>
     <ul v-for="item in boardInfos" v-bind:key="item.id">
       <li>{{ item.boardTitle }}</li>
     </ul>
+    <br>
+    <br>
+    <h2>リストタイトルのリスト</h2>
+    <ul v-for="list in boardInfos[0].list" v-bind:key="list.id">
+      <li>{{ list.listTitle }}</li>
+    </ul>    
+    <h2>リストのアイテム</h2>
+    <ul v-for="item in boardInfos[0].list[0].listItem" v-bind:key="item.id">
+      <li>{{ item }}</li>
+    </ul>    
+
+
+
 
     <br>
     <br>
