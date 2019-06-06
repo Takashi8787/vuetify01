@@ -1,165 +1,70 @@
 <template>
+
+
+
   <v-container>
-    <h1>ここに静的データの練習</h1>
-    <h2>ボードタイトルリスト</h2>
-    <ul v-for="item in boardInfos" v-bind:key="item.id">
-      <li>{{ item.boardTitle }}</li>
-    </ul>
+    <v-layout wrap>
+      <v-flex >
+        <h1>ボードリスト名：まだ未設定</h1>
+        <br>
+        <hr>
+      </v-flex>
+    </v-layout>
+
+    <v-layout>
+      <!-- DBのから取得したtasks配列格納データを一覧表示 -->
+      <v-card class="blue-grey lighten-2" v-for="task in tasks" v-bind:key="task.id">
+        <!-- <v-flex> -->
+          <!-- リストのタイトルと削除ボタン表示 -->
+          <v-card-title primary-title>{{ task.listTitle }}<v-icon  @click="deleteTask(task.id)">delete</v-icon></v-card-title>
+          <!-- リストのアイテム表示 -->
+          <v-card v-for="(item,index) in task.listItem" v-bind:key="index">
+            <p>{{ item }}<v-icon>delete</v-icon></p>
+          </v-card>
+          <!-- アイテム追加機能の表示・非表示 -->
+          <v-card-actions> 
+            <v-btn v-if="toggle" flat color="black" @click="$data.toggle = !$data.toggle"><v-icon>add</v-icon>更にカードを追加</v-btn>
+            <!-- <v-btn flat color="orange">Explore</v-btn> -->
+            <v-form v-else>
+              <v-textarea
+              v-model="listTitle"
+              outline
+              name="input-7-4"
+              label="このカードにタイトルを入力..."
+              value="bbbbbbb"
+              ></v-textarea>
+              <v-btn color="green" @click="submit()">カードを追加</v-btn>
+              <v-icon large @click="$data.toggle = !$data.toggle">close</v-icon>
+            </v-form>
+          </v-card-actions>
+        <!-- </v-flex> -->
+      </v-card>
+    </v-layout>
     <br>
-    <br>
-    <h2>リストタイトルのリスト</h2>
-    <ul v-for="list in boardInfos[0].list" v-bind:key="list.id">
-      <li>{{ list.listTitle }}</li>
-    </ul>    
-    <h2>リストのアイテム</h2>
-    <ul v-for="item in boardInfos[0].list[0].listItem" v-bind:key="item.id">
-      <li>{{ item }}</li>
-    </ul>    
-
-
-
-
-    <br>
-    <br>
-    <hr>
-      <v-layout wrap>
-        <v-flex >
-          <h1>ボードリスト名：{{ $store.state.boardInfos[0].boardTitle }}</h1>
-          <br>
-          <hr>
-        </v-flex>
-
-      </v-layout>
-
-      <v-layout justify-center>
-          <v-flex>
-            <v-card>
-              <div class="listCard">
-                <v-card-title primary-title>
-                  <h3 class="headline">{{ $store.state.boardInfos[0].listTitle }}</h3>
-                </v-card-title>
-                <v-card-text class="listItem">
-                    <p> {{ $store.state.boardInfos[0].listItem }} <v-icon right>edit</v-icon></p>
-                    <p> {{ $store.state.boardInfos[0].listItem }} <v-icon right>edit</v-icon></p>
-                    <p> {{ $store.state.boardInfos[0].listItem }} <v-icon right>edit</v-icon></p>
-                </v-card-text>
-
-                <v-card-actions> 
-                  <v-btn v-if="toggle" flat color="black" @click="$data.toggle = !$data.toggle"><v-icon>add</v-icon>更にカードを追加</v-btn>
-                  <!-- <v-btn flat color="orange">Explore</v-btn> -->
-                  <v-form v-else>
-                    <v-textarea
-                    v-model="listTitle"
-                    outline
-                    name="input-7-4"
-                    label="このカードにタイトルを入力..."
-                    value="bbbbbbb"
-                    ></v-textarea>
-                    <v-btn color="green" @click="submit( $store.state.boardInfos[0].id )">カードを追加</v-btn>
-                    <v-icon large @click="$data.toggle = !$data.toggle">close</v-icon>
-                  </v-form>
-                </v-card-actions>
-              </div>
-            </v-card>
-          </v-flex>
-          <v-flex>
-            <h3>リストのタイトル</h3>
-            <p>リストカード０１</p>
-            <p>リストカード０２</p>
-            <p>リストカード０３</p>
-          </v-flex>
-          <hr>
-      </v-layout>
-
       <!-- 確認用データ -->
       <br><br><br><hr>
       <v-layout>      
         <v-flex>
           <p>確認用「Vueインスタンス：data」の中身</p>
           <p>{{ $data }}</p>
-          <p>{{ $store.state.boardInfos }}</p>
+          <!-- <p>{{ $store.state.boardInfos }}</p> -->
         </v-flex>
-      </v-layout>   
-  </v-container>
+      </v-layout>
+  </v-container>         
 </template>
 
 
 <script>
 // ストアのデータを扱うインポート
 // import store from '@/store.js'
+import db from '@/firebase/init'
 import { mapActions } from 'vuex'
 
-  // console.log($store.state.count)
-  // console.log("storeのカウントの値をw表示")
-  // $store.commit('increment')
-  // console.log($store.state.count)
-  // console.log("storeのカウントの値を足しました")
 
   export default {
     data: () => ({
       // 静的なボードリストデータ
-      boardInfos:[
-        {
-          boardTitle: "boardTitle00",
-          list:[
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-          ],
-          isDone: false,
-          id: 0,
-        },
-        {
-          boardTitle: "boardTitle01",
-          list:[
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-          ],
-          isDone: false,
-          id: 0,
-        },
-        {
-          boardTitle: "boardTitle02",
-          list:[
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-            {
-              listTitle:"listTitle00",
-              listItem: ['item01','item02','item03'],
-            },
-          ],
-          isDone: false,
-          id: 0,
-        },
-      ],
-
-
-
+      tasks: [],
       toggle: true,
       listTitle: "",
       idFlg: 0,  // ID番号設定Flg,１つずつ数値上げていく
@@ -169,17 +74,32 @@ import { mapActions } from 'vuex'
     }),
     // mounted: function() {
     //     console.log("mountedのコンソール");
-    // },  
+    // },
+
+    created(){
+      // fetch data from firestore
+      db.collection('work01').get()
+      .then(snapshot => {
+        snapshot.forEach(doc => {
+          console.log("doc.data()のデータ表示")
+          console.log(doc.data())
+          let task = doc.data()
+          task.id = doc.id
+          this.tasks.push(task)
+        })
+      })
+    },
 
     methods: {
+      deleteTask(id){
+        // データベースからドキュメントを削除
+        db.collection('work01').doc(id).delete()
+      },
 
-      // addListItem(id){
-      //   console.log("add list");
-      // },
-      submit(id){
-        console.log("submitが実行されました.id:" + id);
-        this.addListItem( id, this.listTitle)
-        this.boardInfo = {}
+      submit(){
+        console.log("submitが実行されました.");
+        // this.addListItem( id, this.listTitle)
+        // this.boardInfo = {}
       },
       ...mapActions(['addListItem']),
 

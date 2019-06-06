@@ -42,7 +42,7 @@ export default {
         { title: 'Home', icon: 'home', link: { name: 'home'} },
         { title: 'ToDo list', icon: 'list', link: { name: 'todolist'} },
         { title: '新規登録', icon: 'add_box', link: { name: 'todosub'} },
-        { title: 'Table', icon: 'question_answer', link: { name: 'table'} },
+        { title: 'Table(firebaseDB)', icon: 'question_answer', link: { name: 'table'} },
         { title: 'ボードリスト', icon: 'question_answer', link: { name: 'sub'} },
         { title: 'アカウント登録', icon: 'add_box', link: { name: 'accountcreation'} },
         { title: 'レイアウト', icon: 'add_box', link: { name: 'layout'} },
