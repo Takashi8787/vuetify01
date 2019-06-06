@@ -9,6 +9,7 @@ import Table from './views/Table.vue'
 import Layout from './views/Layout.vue'
 import ToDoSub from './views/ToDoSub.vue'
 import AccountCreation from './views/AccountCreation.vue'
+import Index from './views/index.vue'
 
 
 Vue.use(Router)
@@ -26,6 +27,11 @@ export default new Router({
       path: '/account-creation',
       name: 'accountcreation',
       component: AccountCreation
+    },
+    {
+      path: '/index',
+      name: 'index',
+      component: Index
     },
     {
       path: '/sub',

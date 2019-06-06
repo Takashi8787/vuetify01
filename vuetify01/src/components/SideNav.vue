@@ -46,6 +46,7 @@ export default {
         { title: 'ボードリスト', icon: 'question_answer', link: { name: 'sub'} },
         { title: 'アカウント登録', icon: 'add_box', link: { name: 'accountcreation'} },
         { title: 'レイアウト', icon: 'add_box', link: { name: 'layout'} },
+        { title: 'Firebase', icon: 'add_box', link: { name: 'index'} },
       ],
 
     }
