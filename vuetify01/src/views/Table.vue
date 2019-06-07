@@ -94,6 +94,12 @@ import { mapActions } from 'vuex'
       deleteTask(id){
         // データベースからドキュメントを削除
         db.collection('work01').doc(id).delete()
+        .then(() => {
+          this.tasks = this.tasks.filter(task => {
+            return tasks.id != id
+          })
+          console.log(this.tasks);
+        })
       },
 
       submit(){
