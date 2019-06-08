@@ -1,24 +1,30 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from './views/index.vue'
+import Index from './components/Index.vue'
 import AddSmoothie from './components/AddSmoothie.vue'
+import EditSmoothie from './components/EditSmoothie.vue'
 
 
 Vue.use(Router)
 
 export default new Router({
-  mode: 'history',
+  // mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
-      path: '/index',
+      path: '/',
       name: 'Index',
       component: Index
     },
     {
-      path: '/addsmoothie',
+      path: '/add-smoothie',
       name: 'AddSmoothie',
       component: AddSmoothie
+    },
+    {
+      path: '/edit-smoothie/:smoothie_slug',
+      name: 'EditSmoothie',
+      component: EditSmoothie
     },
   ]
 })
