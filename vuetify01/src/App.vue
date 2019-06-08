@@ -1,42 +1,19 @@
 <template>
-  <!-- vuetifyでは全ての要素を[v-app]で囲む -->
-  <v-app>
-    <v-toolbar dark color="primary">
-      <v-toolbar-side-icon @click.stop="toggleSideMenu"></v-toolbar-side-icon>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>ボードリスト機能作成01</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-    </v-toolbar>
-    <!-- サイドナビゲーション -->
-    <SideNav/>
-
-    <!-- Practiceコンポーネントの表示 -->
-    <v-content>
-      <router-view/>
-    </v-content>
-  </v-app>
+  <div id="app">
+    <Navbar />
+    <router-view/>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-import SideNav from './components/SideNav'
-import Practice from './components/Practice'
-import { mapActions } from 'vuex'
+import Navbar from '@/components/Navbar'
 export default {
   name: 'App',
   components: {
-    HelloWorld,
-    SideNav,
-    Practice
-  },
-  data () {
-    return {
-      //
-    }
-  },
-  methods: {
-    ...mapActions(['toggleSideMenu'])
+    Navbar
   }
 }
 </script>
+
+<style>
+</style>

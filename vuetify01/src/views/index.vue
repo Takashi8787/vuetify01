@@ -1,39 +1,40 @@
 <template>
   <div class="index container">
     <div class="card" v-for="smoothie in smoothies" :key="smoothie.id">
-      <!-- <v-card class="card-content"> -->
-      <v-card>
-        <v-icon @click="deleteSmoothie(smoothie.id)">delete</v-icon>
+      <div class="card-content">
+        <i class="material-icons delete" @click="deleteSmoothie(smoothie.id)">delete</i>
         <h2 class="indigo-text">{{ smoothie.title }}</h2>
-        <ul>
+        <ul class="ingredients">
           <li v-for="(ing, index) in smoothie.ingredients" :key="index">
             <span class="chip">{{ ing }}</span>
           </li>
         </ul>
-      </v-card>
+      </div>
     </div>
-        <p>自分確認データ</p>
-        <p>{{ smoothies }}</p>
-        <p>{{ message }}</p>
+    <p>自分確認データ</p>
+    <p>{{ smoothies }}</p>
   </div>
 </template>
 
+
 <script>
 import db from '@/firebase/init'
-
 export default {
   name: 'Index',
   data(){
     return{
-      smoothies: [],
-      message: 'yorosiku',
+      smoothies: []
     }
   },
   methods: {
     deleteSmoothie(id){
-      this.smoothies = this.smoothies.filter(smoothie => {
-        return smoothie.id != id
+      db.collection('smoothies').doc(id).delete()
+      .then(() => {
+        this.smoothies = this.smoothies.filter(smoothie => {
+          return smoothie.id != id
+        })
       })
+
     }
   },
   created(){
