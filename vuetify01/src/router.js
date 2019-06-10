@@ -4,6 +4,7 @@ import Index from './components/Index.vue'
 import Home from './components/Home.vue'
 import AddSmoothie from './components/AddSmoothie.vue'
 import EditSmoothie from './components/EditSmoothie.vue'
+import Top from './components/Top.vue'
 
 
 Vue.use(Router)
@@ -19,6 +20,11 @@ export default new Router({
     },
     {
       path: '/',
+      name: 'top',
+      component: Top
+    },
+    {
+      path: '/home',
       name: 'Home',
       component: Home
     },

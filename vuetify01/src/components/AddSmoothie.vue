@@ -1,9 +1,10 @@
 <template>
-    <div class="add-smoothie container">
-        <h2 class="center-align">Add New Smoothie Recipe</h2>
+    <!-- <div class="add-smoothie container"> -->
+    <v-container>
+        <h2 class="center-align">Add New Tasks</h2>
         <form @submit.prevent="AddSmoothie()">
             <div class="field title">
-                <label for="title">Smoothie Title:</label>
+                <label for="title">Board Title:</label>
                 <input for="text" name="title" v-model="title">
             </div>
             <div v-for="(ing, index) in ingredients" :key="index" class="field">
@@ -12,7 +13,7 @@
                 <i class="material-icons delete" @click="deleteIng(ing)">delete</i>
             </div>
             <div class="field add-ingredient">
-                <label for="add-ingredient">Add an ingredient</label>
+                <label for="add-ingredient">Add list Title</label>
                 <input type="text" name="add-ingredient" @keydown.tab.prevent="addIng" v-model="another">
             </div>
             <div class="field center-align">
@@ -20,7 +21,8 @@
                 <button class="btn pink">Add SMOOTHIE</button>
             </div>
         </form>    
-    </div>    
+    </v-container>
+    <!-- </div>     -->
 </template>
 
 
