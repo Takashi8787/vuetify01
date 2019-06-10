@@ -5,6 +5,7 @@ import Home from './components/Home.vue'
 import AddSmoothie from './components/AddSmoothie.vue'
 import EditSmoothie from './components/EditSmoothie.vue'
 import Top from './components/Top.vue'
+import TaskLists from './components/TaskLists.vue'
 
 
 Vue.use(Router)
@@ -37,6 +38,16 @@ export default new Router({
       path: '/edit-smoothie/:smoothie_slug',
       name: 'EditSmoothie',
       component: EditSmoothie
+    },
+    // {
+    //   path: '/tasklists',
+    //   name: 'TaskLists',
+    //   component: TaskLists
+    // },
+    {
+      path: '/tasklists/:boardtitle_slug',
+      name: 'TaskLists',
+      component: TaskLists
     },
   ]
 })

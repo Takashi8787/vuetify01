@@ -1,20 +1,24 @@
 <template>
   <v-container>
-    <h1>トップページ</h1>  
+    <h1>トップページ!</h1>  
     <v-layout justify-space-around wrap>
 
     <!-- DBから取得のボードタイトル一覧表示 -->
       <v-flex xs4 pa-3 v-for="board in boards" :key="board.id">
         <v-hover>
-            <v-card
-            slot-scope="{ hover }"
-            :class="board.color"
-            height="100px"
-            >
-                <v-card-title class="white--text borld">{{ board.title }}</v-card-title>
-                <!-- <p class="white-text">{{ board.title }}</p> -->
-                <!-- <v-chip close v-for="(list , index) in board.list" :key="index">{{ list }}</v-chip> -->
-            </v-card>
+
+          <v-card
+          slot-scope="{ hover }"
+          :class="board.color"
+          height="100px"
+          >
+            <router-link :to="{ name: 'TaskLists', params: {boardtitle_slug: board.title} }">
+              <v-card-title class="white--text borld">{{ board.title }}</v-card-title>
+              <v-icon v-if="hover" align-end>favorite_border</v-icon>
+              <!-- <p class="white-text">{{ board.title }}</p> -->
+              <!-- <v-chip close v-for="(list , index) in board.list" :key="index">{{ list }}</v-chip> -->
+            </router-link>
+          </v-card>
         </v-hover>
             
       </v-flex>
