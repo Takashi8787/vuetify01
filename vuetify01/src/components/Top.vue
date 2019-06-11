@@ -12,8 +12,8 @@
           :class="board.color"
           height="100px"
           >
-            <router-link :to="{ name: 'TaskLists', params: {boardtitle_slug: board.title} }">
-              <v-card-title class="white--text borld">{{ board.title }}</v-card-title>
+            <router-link :to="{ name: 'TaskLists', params: {boardtitle_slug: board.boardTitle} }">
+              <v-card-title class="white--text borld">{{ board.boardTitle }}</v-card-title>
               <v-icon v-if="hover" align-end>favorite_border</v-icon>
               <!-- <p class="white-text">{{ board.title }}</p> -->
               <!-- <v-chip close v-for="(list , index) in board.list" :key="index">{{ list }}</v-chip> -->

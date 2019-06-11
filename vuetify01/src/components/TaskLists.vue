@@ -8,14 +8,11 @@
 
             <!-- DBから取得のボードタイトル一覧表示 -->
             <!-- <v-flex xs4 pa-3 v-for="(list, index) in boards[0].list-title" :key="index"> -->
-            <v-flex xs4 pa-3 v-for="board in boards" :key="board.id">
+            <v-flex xs4 pa-3 v-for="(list,index) in lists.listTitle" :key="index">
                 <v-layout wrap>
-                    <v-flex v-for="(list , index) in board.list" :key="index">
-                        <v-card height="100px">
-                            {{ list }}
-                        </v-card>
-
-                    </v-flex>
+                  <v-card height="100px">
+                      {{ list }}
+                  </v-card>
                 </v-layout>
                 <!-- <v-hover>
 
@@ -41,7 +38,7 @@ export default {
   name: 'TaskLists',
   data(){
     return{
-      boards: [],
+      lists: [],
       toggle: false,
       dialog: false,
       newBoardTitle: '',
@@ -58,31 +55,6 @@ export default {
     },
     getFireBase() {
 
-      // var docRef = db.collection("board").doc("boardTitleID");
-      db.collection("board").doc("boardTitleID").get().then(doc => {
-          if (doc.exists) {
-              console.log("Document data:", doc.data());
-          } else {
-              // doc.data() will be undefined in this case
-              console.log("No such document!");
-          }
-      }).catch(error => {
-          console.log("Error getting document:", error);
-      });
-
-
-      // db.collection('board').get()
-      // .then(snapshot => {
-      //   snapshot.forEach(doc => {
-      //     console.log("new data出力")
-      //     console.log(doc.data())
-      //   })
-      // }) 
-
-      // console.log('getFirebaseメソッドが実行。')
-      // let data = db.collection('board').doc('boardTitleID')
-      // console.log('取得Dataの中身!')
-      // console.log(data)
     },
     deleteIng(ing){
       this.smoothie.ingredients = this.smoothie.ingredients.filter(ingredient => {
@@ -91,17 +63,37 @@ export default {
     }
   },
   created(){
-    // fetch data from firestore
-    db.collection('board').get()
-    // db.collection('board').doc('boardTitleID').get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        // console.log(doc.data())
-        let board = doc.data()
-        board.id = doc.id
-        this.boards.push(board)
-      })
-    })       
+    // ボードタイトルIDを取得
+    const boardID = this.$route.params.boardtitle_slug
+    // ボードIDに紐付いたリストデータの取得
+    db.collection("board").doc(boardID).get()
+    .then(doc => {
+        if (doc.exists) {
+            console.log("Document data:", doc.data());
+            this.lists = doc.data()
+            this.lists.id = doc.id
+            console.log("list data",this.lists)
+        } else {
+            // doc.data() will be undefined in this case
+            console.log("No such document!");
+        }
+    })
+    .catch(error => {
+        console.log("Error getting document:", error);
+    });
+
+
+    // // fetch data from firestore
+    // db.collection('board').get()
+    // // db.collection('board').doc('boardTitleID').get()
+    // .then(snapshot => {
+    //   snapshot.forEach(doc => {
+    //     // console.log(doc.data())
+    //     let board = doc.data()
+    //     board.id = doc.id
+    //     this.boards.push(board)
+    //   })
+    // })       
   }
 }
 </script>
