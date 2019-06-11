@@ -2,6 +2,8 @@
     <v-container>
         <h1>{{ this.$route.params.boardtitle_slug }}</h1>
 
+        <v-btn class="blue" @click='getFireBase'>add</v-btn>
+
         <v-layout justify-space-around wrap>
 
             <!-- DBから取得のボードタイトル一覧表示 -->
@@ -54,7 +56,34 @@ export default {
         return ingredient != ing
       })        
     },
+    getFireBase() {
 
+      // var docRef = db.collection("board").doc("boardTitleID");
+      db.collection("board").doc("boardTitleID").get().then(doc => {
+          if (doc.exists) {
+              console.log("Document data:", doc.data());
+          } else {
+              // doc.data() will be undefined in this case
+              console.log("No such document!");
+          }
+      }).catch(error => {
+          console.log("Error getting document:", error);
+      });
+
+
+      // db.collection('board').get()
+      // .then(snapshot => {
+      //   snapshot.forEach(doc => {
+      //     console.log("new data出力")
+      //     console.log(doc.data())
+      //   })
+      // }) 
+
+      // console.log('getFirebaseメソッドが実行。')
+      // let data = db.collection('board').doc('boardTitleID')
+      // console.log('取得Dataの中身!')
+      // console.log(data)
+    },
     deleteIng(ing){
       this.smoothie.ingredients = this.smoothie.ingredients.filter(ingredient => {
         return ingredient != ing
@@ -64,9 +93,10 @@ export default {
   created(){
     // fetch data from firestore
     db.collection('board').get()
+    // db.collection('board').doc('boardTitleID').get()
     .then(snapshot => {
       snapshot.forEach(doc => {
-        console.log(doc.data())
+        // console.log(doc.data())
         let board = doc.data()
         board.id = doc.id
         this.boards.push(board)
