@@ -10,6 +10,7 @@ export default new Vuex.Store({
     listInfos: [],
     selectedBoardID: '',
     selectedListID: '',
+    listNum: 0,
     messages: 'message!bystore',
     idNum: 0,
     drawer: false,
@@ -31,6 +32,7 @@ export default new Vuex.Store({
     },
     getListData () {
       this.state.listInfos = []
+      this.listNum = 0
       // 取得先のDB名を指定
       console.log('selectedBoardID:',this.state.selectedBoardID)
       db.collection('board').doc(this.state.selectedBoardID).collection('listInfo').get()
@@ -39,6 +41,8 @@ export default new Vuex.Store({
         snapshot.forEach(doc => {
           let list = doc.data()
           list.id = doc.id
+          // this.listNum = parseInt(this.listNum) + 1
+          // console.log('store:listNum;', this.listNum)
           this.state.listInfos.push(list)
         })
       })       

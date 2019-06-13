@@ -6,7 +6,7 @@
 
             <!-- DBから取得のボードタイトル一覧表示 -->
             <!-- <v-flex xs4 pa-3 v-for="(list, index) in boards[0].list-title" :key="index"> -->
-            <v-flex xs5 pa-1 class="pink" v-for="(list,index) in $store.state.listInfos" :key="list.id">
+            <v-flex xs5 pa-1 class="yellow" v-for="(list,index) in $store.state.listInfos" :key="list.id">
                   <v-card class="green" height="auto">
                       <h5>{{ list.listTitle }}</h5>
                       <ul v-for="(item,index) in list.listItem" :key="index">
@@ -16,8 +16,9 @@
                       <!-- リストアイテム追加機能 -->
                       <!-- toggle=trueのときに表示 -->
                       <!-- toggle=falseのときに表示するテキストボックス -->
-                      <p>isOpen:{{isOpen[index]}</p>
-                      <v-card v-if="isOpen[index]" v-model="isOpen[index]">
+                      <p>{{isOpen[index]}}</p>
+                      <p>{{message[index]}}</p>
+                      <v-card v-if="isOpen[index]">
                         <v-textarea
                           v-model="newListItem"
                           auto-grow
@@ -61,9 +62,10 @@ export default {
   name: 'TaskLists',
   data(){
     return{
+      message: ['asdf','dsafdfsa','sdafdsfdsf'],
       lists: [],
       toggle: true,
-      isOpen: [],
+      isOpen: [true,false],
       dialog: false,
       newBoardTitle: '',
       newListTitle: '',
@@ -129,12 +131,16 @@ export default {
     this.$store.state.selectedBoardID = this.$route.params.boardID
     // firestoreから「listInfo」ドキュメント取得
     this.getListData()
+
     // リストの数だけ、タブ切り替え用のisOpen toggleを設定する
     const listNum = this.$store.state.listInfos.length
-    for( let i=0; i<listNum; i++ ){
-      this.isOpen[i]=false
+    console.log('listNum：', listNum)
+    for( let i=0; i<2; i++ ){
+      this.isOpen.push(false)
+      console.log('roop回数ha:',i)
+      // console.log('isOpenno naka',isOpen[i])
     }
-}
+  }
 }
 </script>
  
