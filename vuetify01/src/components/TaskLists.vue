@@ -6,7 +6,7 @@
 
             <!-- DBから取得のボードタイトル一覧表示 -->
             <!-- <v-flex xs4 pa-3 v-for="(list, index) in boards[0].list-title" :key="index"> -->
-            <v-flex xs5 pa-1 class="pink" v-for="list in $store.state.listInfos" :key="list.id">
+            <v-flex xs5 pa-1 class="pink" v-for="(list,index) in $store.state.listInfos" :key="list.id">
                   <v-card class="green" height="auto">
                       <h5>{{ list.listTitle }}</h5>
                       <ul v-for="(item,index) in list.listItem" :key="index">
@@ -15,12 +15,8 @@
 
                       <!-- リストアイテム追加機能 -->
                       <!-- toggle=trueのときに表示 -->
-                      <!-- <v-btn v-if="itemToggle" @click="itemToggle=!itemToggle" flat> -->
-                      <v-btn v-if="isOpen[index]" @click="itemToggle(index)" flat>
-                        <v-icon>add</v-icon>さらにカードを追加
-                      </v-btn>
                       <!-- toggle=falseのときに表示するテキストボックス -->
-                      <v-card v-else>
+                      <v-card v-if="isOpen[index]" v-model="isOpen[index]">
                         <v-textarea
                           v-model="newListItem"
                           auto-grow
@@ -30,8 +26,12 @@
                           rows="1"
                         ></v-textarea>
                         <v-btn class="green" @click="addListItem">カードを追加</v-btn>
-                        <v-icon @click="itemToggle=!itemToggle">close</v-icon>
+                        <v-icon @click="itemToggle(index)">close</v-icon>
                       </v-card>
+                      <!-- <v-btn v-if="itemToggle" @click="itemToggle=!itemToggle" flat> -->
+                      <v-btn v-else @click="itemToggle(index)" flat>
+                        <v-icon>add</v-icon>さらにカードを追加
+                      </v-btn>
                   </v-card>
             </v-flex>
             <v-btn v-if="toggle" @click="toggle=!toggle">＋ もう一つリストを追加</v-btn>
@@ -62,7 +62,7 @@ export default {
     return{
       lists: [],
       toggle: true,
-      isOpen: true,
+      isOpen: [],
       dialog: false,
       newBoardTitle: '',
       newListTitle: '',
@@ -109,7 +109,17 @@ export default {
       console.log('listItem addメソッド実行');
     },
     itemToggle(index){
-      this.isOpen.splice(index, 1, !this.isOpen[index])
+      console.log('indexNo', index)
+      console.log('this.isOpen[index]', this.isOpen[index])
+      if(this.isOpen[index]){
+        console.log('if kita')
+        this.isOpen[index]=!this.isOpen[index]
+      }else{
+        console.log('else kita')
+        this.isOpen[index]=true
+        console.log(this.isOpen[index])
+      }
+      // this.isOpen.splice(index, 1, !this.isOpen[index])
     },
 
   },
