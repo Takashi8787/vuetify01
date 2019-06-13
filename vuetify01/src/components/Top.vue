@@ -1,8 +1,6 @@
 <template>
   <v-container>
-    <v-btn @click="getFirebaseData">delete</v-btn>
     <v-layout justify-space-around wrap>
-
     <!-- DBから取得のボードタイトル一覧表示 -->
       <v-flex xs4 pa-3 v-for="board in $store.state.boardInfos" :key="board.id">
         <v-hover>
@@ -109,19 +107,7 @@ export default {
 
 
   },
-  created(){
-
-
-    // fetch data from firestore
-    // db.collection('board').get()
-    // .then(snapshot => {
-    //   snapshot.forEach(doc => {
-    //     console.log(doc.data())
-    //     let board = doc.data()
-    //     board.id = doc.id
-    //     this.boards.push(board)
-    //   })
-    // })    
+  created(){ 
   }
 }
 </script>
