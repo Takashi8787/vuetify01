@@ -1,10 +1,10 @@
 <template>
   <v-container>
-    <h1>トップページ!</h1>  
+    <v-btn @click="getFirebaseData">delete</v-btn>
     <v-layout justify-space-around wrap>
 
     <!-- DBから取得のボードタイトル一覧表示 -->
-      <v-flex xs4 pa-3 v-for="board in boards" :key="board.id">
+      <v-flex xs4 pa-3 v-for="board in $store.state.boardInfos" :key="board.id">
         <v-hover>
 
           <v-card
@@ -12,24 +12,14 @@
           :class="board.color"
           height="100px"
           >
-            <router-link :to="{ name: 'TaskLists', params: {boardtitle_slug: board.boardTitle} }">
+            <router-link :to="{ name: 'TaskLists', params: {boardtitle_slug: board.boardTitle, boardID: board.id} }">
               <v-card-title class="white--text borld">{{ board.boardTitle }}</v-card-title>
               <v-icon v-if="hover" align-end>favorite_border</v-icon>
               <!-- <p class="white-text">{{ board.title }}</p> -->
               <!-- <v-chip close v-for="(list , index) in board.list" :key="index">{{ list }}</v-chip> -->
             </router-link>
           </v-card>
-        </v-hover>
-            
-      </v-flex>
-      <v-flex xs4 pa-3>
-        <v-btn ma-4 color="blue" @click="toggle=!toggle">
-          ボードの追加
-        </v-btn>
-        <v-form v-if="toggle">
-          <v-text-field v-model="newBoardTitle">
-          </v-text-field>
-        </v-form>
+        </v-hover>            
       </v-flex>
     </v-layout>
 
@@ -48,12 +38,6 @@
               <v-layout wrap>
                 <v-flex xs12>
                   <v-text-field v-model="newBoardTitle" label="ボードタイトルを追加*" required></v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                  <v-overflow-btn
-                    :items="['Arial', 'Calibri', 'Courier', 'Verdana']"
-                    label="ここでチームの選択"
-                  ></v-overflow-btn>
                 </v-flex>
                 <v-flex xs12>
                   <v-overflow-btn
@@ -85,6 +69,7 @@
 
 <script>
 import db from '@/firebase/init'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'Index',
@@ -99,38 +84,44 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['getFirebaseData']),
     addBoardTitle(){
-        if(this.newBoardTitle){
-          // save to firebasetore
-          db.collection('board').add({
-              title: this.newBoardTitle,
-              color: this.newColor,
-          }).then(() => {
-              // this.$router.push({ name: 'Index'})
-          }).catch(err => {
-              console.log(err)
-          })
-          this.newBoardTitle = null
-          this.newColor = null
-          this.feedback = null
-        } else {
-            this.feedback = 'You must enter a value to add an ingredient'
-        }
+      if(this.newBoardTitle){
+        // save to firebasetore
+        db.collection('board').add({
+            boardTitle: this.newBoardTitle,
+            color: this.newColor,
+            favorite: false,
+        }).then(() => {
+            // this.$router.push({ name: 'Index'})
+        }).catch(err => {
+            console.log(err)
+        })
+        this.newBoardTitle = null
+        this.newColor = null
+        this.feedback = null
+      } else {
+          this.feedback = 'You must enter a value to add an ingredient'
+      }
+      // 画面のリロード
+      location.reload();
     },
 
 
   },
   created(){
+
+
     // fetch data from firestore
-    db.collection('board').get()
-    .then(snapshot => {
-      snapshot.forEach(doc => {
-        console.log(doc.data())
-        let board = doc.data()
-        board.id = doc.id
-        this.boards.push(board)
-      })
-    })    
+    // db.collection('board').get()
+    // .then(snapshot => {
+    //   snapshot.forEach(doc => {
+    //     console.log(doc.data())
+    //     let board = doc.data()
+    //     board.id = doc.id
+    //     this.boards.push(board)
+    //   })
+    // })    
   }
 }
 </script>

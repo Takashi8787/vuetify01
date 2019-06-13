@@ -7,12 +7,32 @@
 
 <script>
 import Navbar from '@/components/Navbar'
+import { mapActions } from 'vuex'
+
 export default {
   name: 'App',
   components: {
     Navbar
-  }
+  },
+  created(){
+    // fetch data from firestore
+    this.getFirebaseData()   
+  },
+  data(){
+    return{
+      boards: [],
+      newBoardTitle: '',
+      feedback: null,
+    }
+  },
+  methods: {
+    ...mapActions(['getFirebaseData']),
+    addBoardTitle(){
+    },
+  },
 }
+
+
 </script>
 
 <style>

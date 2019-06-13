@@ -1,31 +1,52 @@
 <template>
     <v-container>
-        <h1>{{ this.$route.params.boardtitle_slug }}</h1>
-
-        <v-btn class="blue" @click='getFireBase'>add</v-btn>
+        <h3>{{ this.$route.params.boardtitle_slug }}</h3>
 
         <v-layout justify-space-around wrap>
 
             <!-- DBから取得のボードタイトル一覧表示 -->
             <!-- <v-flex xs4 pa-3 v-for="(list, index) in boards[0].list-title" :key="index"> -->
-            <v-flex xs4 pa-3 v-for="(list,index) in lists.listTitle" :key="index">
-                <v-layout wrap>
-                  <v-card height="100px">
-                      {{ list }}
-                  </v-card>
-                </v-layout>
-                <!-- <v-hover>
+            <v-flex xs5 pa-1 class="pink" v-for="list in $store.state.listInfos" :key="list.id">
+                  <v-card class="green" height="auto">
+                      <h5>{{ list.listTitle }}</h5>
+                      <ul v-for="(item,index) in list.listItem" :key="index">
+                        <li>{{ item }}</li>
+                      </ul>
 
-                <v-card
-                slot-scope="{ hover }"
-                :class="board.color"
-                height="100px"
-                >
-                    <v-card-title class="white--text borld">{{ list }}</v-card-title>
-                </v-card>
-                </v-hover> -->
-                    
+                      <!-- リストアイテム追加機能 -->
+                      <!-- toggle=trueのときに表示 -->
+                      <!-- <v-btn v-if="itemToggle" @click="itemToggle=!itemToggle" flat> -->
+                      <v-btn v-if="isOpen[index]" @click="itemToggle(index)" flat>
+                        <v-icon>add</v-icon>さらにカードを追加
+                      </v-btn>
+                      <!-- toggle=falseのときに表示するテキストボックス -->
+                      <v-card v-else>
+                        <v-textarea
+                          v-model="newListItem"
+                          auto-grow
+                          box
+                          color="deep-purple"
+                          label="このカードにタイトルを入力..."
+                          rows="1"
+                        ></v-textarea>
+                        <v-btn class="green" @click="addListItem">カードを追加</v-btn>
+                        <v-icon @click="itemToggle=!itemToggle">close</v-icon>
+                      </v-card>
+                  </v-card>
             </v-flex>
+            <v-btn v-if="toggle" @click="toggle=!toggle">＋ もう一つリストを追加</v-btn>
+            <v-card v-else>
+              <v-textarea
+                v-model="newListTitle"
+                auto-grow
+                box
+                color="deep-purple"
+                label="リストのタイトルを入力..."
+                rows="1"
+              ></v-textarea>
+              <v-btn class="green" @click="addListTitle">リストを追加</v-btn>
+              <v-icon @click="toggle=!toggle">close</v-icon>
+            </v-card>
         </v-layout>
 
     </v-container>
@@ -33,67 +54,70 @@
 
 <script>
 import db from '@/firebase/init'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'TaskLists',
   data(){
     return{
       lists: [],
-      toggle: false,
+      toggle: true,
+      isOpen: true,
       dialog: false,
       newBoardTitle: '',
+      newListTitle: '',
+      newListItem: '',
       newColor: '',
       feedback: null,
     }
   },
   methods: {
-    //   ここのリストDBのID一致したデータのみを取得する処理について
-    selectdata(){
-      this.smoothie.ingredients = this.smoothie.ingredients.filter(ingredient => {
-        return ingredient != ing
-      })        
-    },
-    getFireBase() {
+    ...mapActions(['getListData']),
+    addListTitle(){
+      // ここにリスト追加のコードを書く
+      console.log('リストタイトルが追加されました')
+
+      if(this.newListTitle){
+        // save to firebasetore
+        db.collection('board').doc(this.$store.state.selectedBoardID).collection('listInfo').add({
+          listTitle: this.newListTitle,
+        }).then( doc => {
+          // console.log("Document written with ID: ",doc.id)
+
+          db.collection('board').doc(this.$store.state.selectedBoardID).update({
+            listKey: doc.id
+          }).then(() => {
+
+          }).catch( err => {
+            console.log(err)
+          })
+            // ※ここでリストドキュメントのIDを登録???
+            // this.$router.push({ name: 'Index'})
+        }).catch( err => {
+          console.log(err)
+        })
+        this.newListTitle = null
+        this.feedback = null
+      } else {
+          this.feedback = 'You must enter a value to add an ingredient'
+      }
+      // 画面のリロード
+      // location.reload();
 
     },
-    deleteIng(ing){
-      this.smoothie.ingredients = this.smoothie.ingredients.filter(ingredient => {
-        return ingredient != ing
-      })
-    }
+    addListItem(){
+      console.log('listItem addメソッド実行');
+    },
+    itemToggle(index){
+      this.isOpen.splice(index, 1, !this.isOpen[index])
+    },
+
   },
   created(){
-    // ボードタイトルIDを取得
-    const boardID = this.$route.params.boardtitle_slug
-    // ボードIDに紐付いたリストデータの取得
-    db.collection("board").doc(boardID).get()
-    .then(doc => {
-        if (doc.exists) {
-            console.log("Document data:", doc.data());
-            this.lists = doc.data()
-            this.lists.id = doc.id
-            console.log("list data",this.lists)
-        } else {
-            // doc.data() will be undefined in this case
-            console.log("No such document!");
-        }
-    })
-    .catch(error => {
-        console.log("Error getting document:", error);
-    });
-
-
-    // // fetch data from firestore
-    // db.collection('board').get()
-    // // db.collection('board').doc('boardTitleID').get()
-    // .then(snapshot => {
-    //   snapshot.forEach(doc => {
-    //     // console.log(doc.data())
-    //     let board = doc.data()
-    //     board.id = doc.id
-    //     this.boards.push(board)
-    //   })
-    // })       
+    // TOPページで選んだボードリストのIDをstore.jsに登録
+    this.$store.state.selectedBoardID = this.$route.params.boardID
+    // firestoreから「listInfo」ドキュメント取得
+    this.getListData()
   }
 }
 </script>
