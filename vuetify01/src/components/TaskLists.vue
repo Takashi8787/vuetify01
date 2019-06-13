@@ -16,6 +16,7 @@
                       <!-- リストアイテム追加機能 -->
                       <!-- toggle=trueのときに表示 -->
                       <!-- toggle=falseのときに表示するテキストボックス -->
+                      <p>isOpen:{{isOpen[index]}</p>
                       <v-card v-if="isOpen[index]" v-model="isOpen[index]">
                         <v-textarea
                           v-model="newListItem"
@@ -128,7 +129,12 @@ export default {
     this.$store.state.selectedBoardID = this.$route.params.boardID
     // firestoreから「listInfo」ドキュメント取得
     this.getListData()
-  }
+    // リストの数だけ、タブ切り替え用のisOpen toggleを設定する
+    const listNum = this.$store.state.listInfos.length
+    for( let i=0; i<listNum; i++ ){
+      this.isOpen[i]=false
+    }
+}
 }
 </script>
  
