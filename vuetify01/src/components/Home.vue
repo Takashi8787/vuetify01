@@ -10,7 +10,7 @@
       </v-flex>
       <v-flex xs4>
         <v-btn ma-4 color="blue" @click="toggle=!toggle">
-          ボードの追加
+          ボードの追加desu
         </v-btn>
         <v-form v-if="toggle">
           <v-text-field v-model="newBoardTitle">
