@@ -1,6 +1,7 @@
 import firebase from 'firebase'
 import firestore from 'firebase/firestore'
 
+
 // Your web app's Firebase configuration
 
 
@@ -20,6 +21,8 @@ const firebaseApp = firebase.initializeApp(firebaseConfig);
 
 // export firestore database
 export default firebaseApp.firestore()
+
+
 
 
 
