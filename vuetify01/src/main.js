@@ -5,7 +5,7 @@ import router from './router'
 // これがストアを全体で使えるためのインポート
 import store from './store'
 // import firebase from 'firebase'
-// import firebasestore from 'firebase/firestore'
+
 
 Vue.config.productionTip = false
 
