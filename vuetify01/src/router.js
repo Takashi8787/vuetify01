@@ -7,17 +7,24 @@ import EditSmoothie from './components/EditSmoothie.vue'
 import Top from './components/Top.vue'
 import TaskLists from './components/TaskLists.vue'
 
+import sample from './views/sample.vue'
+
 
 Vue.use(Router)
 
 export default new Router({
-  // mode: 'history',
+  mode: 'history',
   base: process.env.BASE_URL,
   routes: [
     {
       path: '/index',
       name: 'Index',
       component: Index
+    },
+    {
+      path: '/sample',
+      name: 'sample',
+      component: sample
     },
     {
       path: '/',
