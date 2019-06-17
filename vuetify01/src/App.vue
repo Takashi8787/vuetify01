@@ -7,6 +7,7 @@
 
 <script>
 import Navbar from '@/components/Navbar'
+// import SideNav from '@/components/SideNav'
 import { mapActions } from 'vuex'
 
 export default {

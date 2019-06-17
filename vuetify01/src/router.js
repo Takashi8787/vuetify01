@@ -39,11 +39,6 @@ export default new Router({
       name: 'EditSmoothie',
       component: EditSmoothie
     },
-    // {
-    //   path: '/tasklists',
-    //   name: 'TaskLists',
-    //   component: TaskLists
-    // },
     {
       path: '/tasklists/:boardtitle_slug',
       name: 'TaskLists',
