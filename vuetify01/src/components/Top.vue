@@ -1,7 +1,5 @@
 <template>
   <v-container>
-    <h3>nav</h3>
-    <p>yorosiku!</p>
     <v-layout justify-space-around wrap>
     <!-- DBから取得のボードタイトル一覧表示 -->
       <v-flex xs4 pa-3 v-for="board in $store.state.boardInfos" :key="board.id">
